@@ -1,9 +1,29 @@
-- hosts: webserver
-  sudo: true
+- hosts: all
+  sudo: True
   user: vagrant
-  tags:
-    - install
-    - nginx
   tasks:
+    - name: "Install phyton-pip"
+      shell: apt-get install python-pip
+      tags:
+        - install
+        - python
+    - name: "Install docker client"
+      shell: pip install docker-py
+      tags:
+        - install
+        - docker-client-py
+    - name: "Get latest  Docker package"
+      shell: curl -sSL https://get.docker.com/ | sh
+      tags:
+        - install
+        - docker
+    - name: "add apt-key"
+      shell: curl -sSL https://get.docker.com/gpg | sudo apt-key add -
+      tags:
+        - install
+        - docker
     - name: install nginx
       docker_image: path="." name="nginx" state=present
+      tags:
+        - install
+        - nginx
