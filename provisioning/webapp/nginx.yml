@@ -1,0 +1,9 @@
+- hosts: webserver
+  sudo: true
+  user: vagrant
+  tags:
+    - install
+    - nginx
+  tasks:
+    - name: install nginx
+      docker_image: path="." name="nginx" state=present
