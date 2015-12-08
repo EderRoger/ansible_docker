@@ -1,0 +1,5 @@
+- hosts: webserver
+  sudo: True
+  user: vagrant
+  roles:
+    - nginx
