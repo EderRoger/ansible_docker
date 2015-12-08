@@ -1,9 +1,9 @@
-- hosts: all
+- hosts: webservers
   sudo: True
   user: vagrant
   tasks:
     - name: "Install phyton-pip"
-      shell: apt-get install python-pip
+      shell: apt-get -y install python-pip
       tags:
         - install
         - python
@@ -22,8 +22,12 @@
       tags:
         - install
         - docker
-    - name: install nginx
-      docker_image: path="." name="nginx" state=present
+    - name: "build nginx image"
+      local_action:
+         module: docker_image
+         path: .
+         name: nginx
+         state: present
       tags:
         - install
         - nginx
