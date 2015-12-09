@@ -12,7 +12,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web_config.vm.network :private_network, :ip => "192.168.33.15"
     web_config.vm.provision :ansible do |ansible|
       ansible.playbook = "webserver.yml"
+      ansible.inventory_path = "staging"
       ansible.verbose = "vvv"
+      ansible.sudo_user = "vagrant"
     end
   end
 end

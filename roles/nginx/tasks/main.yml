@@ -19,11 +19,7 @@
     - install
     - docker
 - name: "build nginx image"
-  local_action:
-    module: docker_image
-    path: .
-    name: nginx
-    state: present
+  docker_image: path="/home/vagrant/roles/nginx/tasks" name="nginx_image" state=present
   tags:
     - install
     - nginx
