@@ -1,0 +1,20 @@
+- name: syncronize dockerfile
+  synchronize: src=/files dest=/tmp
+
+- name: build the image
+  docker_image: >
+    name=built-by-ansible
+    tag=nginx
+    path=/tmp
+    state=present
+  tags:
+    - image
+
+- name: run the site in a docker container
+  docker:
+    name: site1
+    image: "built-by-ansible:nginx"
+    state: reloaded
+    publish_all_ports: yes
+    tags:
+    - container

@@ -1,3 +1,7 @@
+- name: "update"
+  shell: apt-get -y update
+  tags:
+    - update
 - name: "Install phyton-pip"
   shell: apt-get -y install python-pip
   tags:
@@ -18,8 +22,14 @@
   tags:
     - install
     - docker
-- name: "build nginx image"
-  docker_image: path="/home/vagrant/roles/nginx/tasks" name="nginx_image" state=present
-  tags:
-    - install
-    - nginx
+
+- name: "configure docker"
+  copy: content='DOCKER_OPTS=""' dest=/etc/default/docker
+  notify: restart docker
+
+- name: "allow vagrant user to run docker commands without sudo"
+  user: name=vagrant append=yes groups=docker
+
+- handlers:
+  - name: restart docker
+    command: service docker restart
