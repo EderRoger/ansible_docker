@@ -1,11 +1,13 @@
 - name: syncronize dockerfile
-  synchronize: src=/files dest=/tmp
+  synchronize: src=../files dest=/tmp
+  tags:
+    - copy_file
 
 - name: build the image
   docker_image: >
     name=built-by-ansible
     tag=nginx
-    path=/tmp
+    path=/tmp/files
     state=present
   tags:
     - image

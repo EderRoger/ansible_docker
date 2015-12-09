@@ -29,7 +29,3 @@
 
 - name: "allow vagrant user to run docker commands without sudo"
   user: name=vagrant append=yes groups=docker
-
-- handlers:
-  - name: restart docker
-    command: service docker restart
