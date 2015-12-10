@@ -1,22 +1,11 @@
-- name: "update"
-  shell: apt-get -y update
-  tags:
-    - update
-- name: "Install phyton-pip"
-  shell: apt-get -y install python-pip
-  tags:
-    - install
-    - python
-- name: "Install docker client"
-  shell: pip install docker-py
-  tags:
-    - install
-    - docker-client-py
 - name: "Get latest  Docker package"
   shell: curl -sSL https://get.docker.com/ | sh
+  args:
+    creates: /usr/bin/docker
   tags:
     - install
     - docker
+
 - name: "add apt-key"
   shell: curl -sSL https://get.docker.com/gpg | sudo apt-key add -
   tags:
@@ -26,6 +15,29 @@
 - name: "configure docker"
   copy: content='DOCKER_OPTS=""' dest=/etc/default/docker
   notify: restart docker
+  tags:
+    - install
+
+- group: name=docker state=present
+  tags:
+    - install
+    - group_docker
 
 - name: "allow vagrant user to run docker commands without sudo"
   user: name=vagrant append=yes groups=docker
+  tags:
+    - install
+    - docker_sudo
+
+- name: "install phyton required packages"
+  apt: pkg={{item}} state=latest
+  with_items: [python-pip, python-dev]
+  tags:
+    - install
+    - python
+
+- name: "install docker-py"
+  pip: name=docker-py version=1.1.0
+  tags:
+    - install
+    - docker_py

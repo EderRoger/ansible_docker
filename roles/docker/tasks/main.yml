@@ -14,9 +14,9 @@
 
 - name: run the site in a docker container
   docker:
-    name: site1
+    name: nginx
     image: "built-by-ansible:nginx"
     state: reloaded
     publish_all_ports: yes
-    tags:
-    - container
+  tags:
+      - container_nginx
