@@ -17,6 +17,9 @@
     name: nginx
     image: "built-by-ansible:nginx"
     state: reloaded
+    restart_policy: always
     publish_all_ports: yes
+    ports:
+      80:80
   tags:
       - container_nginx

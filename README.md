@@ -5,15 +5,15 @@ A simple example using module ansible docker to build an container enviroment
 
 ``$ vagrant up``
 
-# Runing  playbook install tag
+# Run  playbook - install docker
 
 ``$ ansible-playbook -i staging --tags "install" -u vagrant webserver.yml -vvvv``
 
 
-# Runing  playbook container task
+# Run  playbook - build a nginx image and start container
 
 ``$ ansible-playbook -i staging --tags "copy_file,image,container_nginx" -u vagrant webserver.yml -vvvv``
 
 # Test NGinx home page
 
-`` Your web browser http://192.168.33.15:32768``
+`` Your web browser http://192.168.33.15``
