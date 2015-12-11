@@ -17,3 +17,7 @@ A simple example using module ansible docker to build an container enviroment
 # Test NGinx home page
 
 `` Your web browser http://192.168.33.15``
+
+# See your container status
+
+``$ vagrant ssh -c "docker ps"``
