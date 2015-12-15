@@ -1,5 +1,8 @@
 [webserver]
-192.168.33.15 ansible_ssh_user=vagrant
+
+192.168.33.11 ansible_ssh_user=vagrant
+192.168.33.12 ansible_ssh_user=vagrant
 
 [lb]
-192.168.33.16 ansible_ssh_user=vagrant
+
+192.168.33.19 ansible_ssh_user=vagrant
