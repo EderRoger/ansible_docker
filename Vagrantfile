@@ -17,7 +17,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       sudo apt-get update
       echo "#{ssh_public_key}" >> /home/vagrant/.ssh/authorized_keys
     SHELL
+  end
 
+  config.vm.define :lb do |web_config|
+    web_config.vm.network :private_network, :ip => "192.168.33.16"
+    web_config.vm.host_name = "lb"
+
+    web_config.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update
+      echo "#{ssh_public_key}" >> /home/vagrant/.ssh/authorized_keys
+    SHELL
 #    web_config.vm.provision :ansible do |ansible|
 #      ansible.playbook = "webserver.yml"
 #      ansible.verbose = "vvv"
