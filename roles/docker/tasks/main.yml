@@ -1,7 +1,12 @@
-- name: copy index file
-  template: src=index.html.j2 dest=/tmp/index.html
+- name: Creates directory
+  file: path=/var/www/html/website state=directory
   tags:
-    - copy_nginx_index
+    - index_file
+
+- name: copy index file
+  template: src=index.html.j2 dest=/var/www/html/website/index.html
+  tags:
+    - index_file
 
 - name: syncronize dockerfile
   synchronize: src=../files dest=/tmp
