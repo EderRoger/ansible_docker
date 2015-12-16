@@ -1,3 +1,8 @@
+- name: copy index file
+  template: src=index.html.j2 dest=/tmp/index.html
+  tags:
+    - copy_nginx_index
+
 - name: syncronize dockerfile
   synchronize: src=../files dest=/tmp
   tags:

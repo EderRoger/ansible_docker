@@ -14,7 +14,7 @@
     - enable_haproxy
 
 - name: deploy haproxy config
-  template: src=templates/haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
   notify: restart haproxy
   tags:
-    - hproxy_config
+    - haproxy_config

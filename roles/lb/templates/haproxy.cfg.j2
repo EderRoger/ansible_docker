@@ -35,7 +35,7 @@ defaults
     stats uri /haproxy?stats
 
 backend app
-
+    listen lb 192.168.33.19:80
     balance     roundrobin
-    server 192.168.33.11 check port 80
-    server 192.168.33.12 check port 80
+    server web_1 192.168.33.11 check port 80
+    server web_2 192.168.33.12 check port 80
