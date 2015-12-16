@@ -4,3 +4,9 @@
   roles:
     - nginx
     - docker
+
+- hosts: lb
+  sudo: True
+  user: vagrant
+  roles:
+    - lb

@@ -1,13 +1,20 @@
 - name: install hproxy ans socat
   apt: pkg={{ item }} state=latest
   with_items:
-  - hproxy
+  - haproxy
   - socat
+  tags:
+    - install
+    - haproxy
 
 - name: enable haproxy
   lineinfile: dest=/etc/default/haproxy regexp="^ENABLED" line="ENABLED=1"
   notify: restart haproxy
+  tags:
+    - enable_haproxy
 
 - name: deploy haproxy config
   template: src=templates/haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
   notify: restart haproxy
+  tags:
+    - hproxy_config

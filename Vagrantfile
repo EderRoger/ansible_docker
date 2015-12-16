@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   (1..2).each do |i|
     config.vm.define "web_#{i}" do |web_config|
       web_config.vm.network :private_network, :ip => "192.168.33.1#{i}"
-      web_config.vm.host_name = "web_#{i}"
+      web_config.vm.host_name = "web#{i}"
 
       web_config.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
