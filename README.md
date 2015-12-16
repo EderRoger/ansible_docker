@@ -1,23 +1,37 @@
-# ansible_docker
+# ansible docker with HAproxy Loadbalancing
+
 A simple example using module ansible docker to build an container enviroment
 
 # Start a environment 
 
 ``$ vagrant up``
 
-# Run  playbook - install docker
+# Run  playbook - install
 
 ``$ ansible-playbook -i staging --tags "install" -u vagrant webserver.yml -vvvv``
 
+# Run  playbook -  docker
 
-# Run  playbook - build a nginx image and start container
+``$ ansible-playbook -i staging --tags "docker" -u vagrant webserver.yml -vvvv``
 
-``$ ansible-playbook -i staging --tags "copy_file,image,container_nginx" -u vagrant webserver.yml -vvvv``
+# Run  playbook - install lb
 
-# Test NGinx home page
+``$ ansible-playbook -i lb --tags "install" -u vagrant webserver.yml -vvvv``
 
-`` Your web browser http://192.168.33.15``
+
+# Test HAProxy home page
+
+`` Your web browser http://192.168.33.19``
+
+# HAProxy status page
+
+`` Your web browser http://192.168.33.19/haproxy?stats``
+
+# Run apache benchmark
+
+`` ab -c 40 -n 10000 http://192.168.33.19/ ``
+
 
 # See your container status
 
-``$ vagrant ssh -c "docker ps"``
+``$ vagrant ssh -c web_1 "docker ps"``
