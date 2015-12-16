@@ -29,10 +29,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       sudo apt-get update
       echo "#{ssh_public_key}" >> /home/vagrant/.ssh/authorized_keys
     SHELL
-#    web_config.vm.provision :ansible do |ansible|
-#      ansible.playbook = "webserver.yml"
-#      ansible.verbose = "vvv"
-#    end
   end
 end
 
