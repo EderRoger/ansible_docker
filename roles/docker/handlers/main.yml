@@ -1,0 +1,2 @@
+- name: copy index file template
+  template: src=index.html.j2 dest=/vagrant/roles/docker/files/index.html

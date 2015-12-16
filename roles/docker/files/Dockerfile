@@ -6,12 +6,16 @@ RUN apt-get update && apt-get install -y nginx
 
 RUN mkdir -p /var/www/html/website
 
-VOLUME /var/www/html/website/
+VOLUME /tmp
 
-# ADD ./www/index.html /var/www/html/website/index.html
+# ADD ./index.html /var/www/html/website/index.html
 
 ADD ./global.conf /etc/nginx/conf.d/
 ADD ./nginx.conf /etc/nginx/nginx.conf
+
+WORKDIR /tmp
+
+#RUN cp index.html /var/www/html/website/index.html
 
 ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
 

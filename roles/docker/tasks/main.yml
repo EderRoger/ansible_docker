@@ -1,17 +1,14 @@
-- name: Creates directory
-  file: path=/var/www/html/website state=directory
-  tags:
-    - index_file
-
 - name: copy index file
-  template: src=index.html.j2 dest=/var/www/html/website/index.html
+  template: src=index.html.j2 dest=/tmp/index.html
   tags:
     - index_file
+    - docker
 
 - name: syncronize dockerfile
   synchronize: src=../files dest=/tmp
   tags:
     - copy_file
+    - docker
 
 - name: build the image
   docker_image: >
@@ -21,6 +18,7 @@
     state=present
   tags:
     - image
+    - docker
 
 - name: run the site in a docker container
   docker:
@@ -29,7 +27,10 @@
     state: reloaded
     restart_policy: always
     publish_all_ports: yes
+    volumes:
+      - /tmp:/var/www/html/website
     ports:
       80:80
   tags:
-      - container_nginx
+      - container
+      - docker
