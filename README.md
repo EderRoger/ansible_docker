@@ -1,8 +1,8 @@
-# ansible docker with HAproxy Loadbalancing
+# Ansible, Docker provisioning a HAProxy Loadbalancing
 
 A simple example using module ansible docker to build an container enviroment
 
-# Start a environment 
+# Start a environment
 
 ``$ vagrant up``
 
@@ -35,3 +35,5 @@ A simple example using module ansible docker to build an container enviroment
 # See your container status
 
 ``$ vagrant ssh -c web_1 "docker ps"``
+
+
