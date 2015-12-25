@@ -18,7 +18,6 @@ A simple example using module ansible docker to build an container enviroment
 
 ``$ ansible-playbook -i lb --tags "install" -u vagrant webserver.yml -vvvv``
 
-
 # Test HAProxy home page
 
 `` Your web browser http://192.168.33.19``
@@ -35,5 +34,3 @@ A simple example using module ansible docker to build an container enviroment
 # See your container status
 
 ``$ vagrant ssh -c web_1 "docker ps"``
-
-
