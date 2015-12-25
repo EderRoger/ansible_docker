@@ -2,7 +2,7 @@
 
 A simple example using module ansible docker to build an container enviroment
 
-# Start a environment
+# Start a environment with a vagrant command
 
 ``$ vagrant up``
 
