@@ -1,6 +1,6 @@
 # Ansible, Docker provisioning a HAProxy Loadbalancing
 
-A simple example using module ansible docker to build an container enviroment
+A simple example using module ansible docker to build an container enviroment, to test you need to install ansisble, vagrant..
 
 # Start a environment with a vagrant command
 
